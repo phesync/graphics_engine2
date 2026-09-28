@@ -13,3 +13,6 @@ project ("graphics_engine2")
 
 # Include sub-projects.
 add_subdirectory ("graphics_engine2")
+add_subdirectory("external/glfw" EXCLUDE_FROM_ALL)
+add_subdirectory("external/glm" EXCLUDE_FROM_ALL)
+add_subdirectory("external/glad" EXCLUDE_FROM_ALL)

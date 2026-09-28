@@ -16,19 +16,12 @@ file(GLOB_RECURSE HEADERS
 add_executable (graphics_engine2 ${SOURCES} ${HEADERS})
 
 target_include_directories(graphics_engine2 PRIVATE
-    "C:/Libs/glfw-3.4/include"
-    "C:/Libs/glm-1.0.3/glm/include"
-    "C:/Libs/glad-3.3/include"
     "src/include"
 )
 
-target_link_directories(graphics_engine2 PRIVATE
-    "C:/Libs/glfw-3.4/build/src/Release"
-)
-
-target_link_libraries(graphics_engine2 PRIVATE
-    glfw3
-)
+target_link_libraries(graphics_engine2 PRIVATE glfw)
+target_link_libraries(graphics_engine2 PRIVATE glm)
+target_link_libraries(graphics_engine2 PRIVATE glad)
 
 add_custom_command(
     TARGET graphics_engine2 POST_BUILD
