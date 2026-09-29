@@ -29,24 +29,18 @@ add_custom_command(
 # Include sub-projects.
 add_subdirectory ("graphics_engine2")
 
-add_subdirectory("external/glfw")
-add_subdirectory("external/glm")
-add_subdirectory("external/glad")
-add_subdirectory("external/imgui")
+add_subdirectory("external")
 
 target_link_libraries(graphics_engine2 PRIVATE glfw)
 target_link_libraries(graphics_engine2 PRIVATE glm)
 target_link_libraries(graphics_engine2 PRIVATE glad)
 
 target_link_libraries(graphics_engine2 PRIVATE imgui)
-target_include_directories(imgui PRIVATE
-"external/glfw/include"
-)
 
 target_include_directories(graphics_engine2 PRIVATE
 "external/glad/include"
 "external/glfw/include",
 "external/glm",
-"external/imgui/imgui",
-"external/imgui/imgui/backends"
+"external/imgui",
+"external/imgui/backends"
 )
