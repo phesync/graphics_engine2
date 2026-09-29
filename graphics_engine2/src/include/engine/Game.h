@@ -13,7 +13,7 @@
 #include <util/Map.h>
 #include <algorithm/Perlin.h>
 
-#include <imgui/imgui.h>
+#include <imgui.h>
 
 #include <algorithm>
 #include <thread>
@@ -54,6 +54,10 @@ void dehash_position(const uint64_t& hash, int16_t& x, int16_t& y, int16_t& z)
 struct Entity {
     ObjTransform transform;
     glm::vec3 velocity;
+
+    Entity() {
+        velocity = glm::vec3(0, 0, 0);
+    }
 };
 
 // Represent a block in world

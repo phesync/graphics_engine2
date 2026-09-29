@@ -11,8 +11,42 @@ endif()
 
 project ("graphics_engine2")
 
+add_executable (graphics_engine2)
+
+if (CMAKE_VERSION VERSION_GREATER 3.12)
+  set_property(TARGET graphics_engine2 PROPERTY CXX_STANDARD 20)
+endif()
+
+add_custom_command(
+    TARGET graphics_engine2 POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+            "${CMAKE_CURRENT_SOURCE_DIR}/graphics_engine2/assets"
+            "$<TARGET_FILE_DIR:graphics_engine2>/assets"
+
+    COMMENT "Copying asset file."
+)
+
 # Include sub-projects.
 add_subdirectory ("graphics_engine2")
-add_subdirectory("external/glfw" EXCLUDE_FROM_ALL)
-add_subdirectory("external/glm" EXCLUDE_FROM_ALL)
-add_subdirectory("external/glad" EXCLUDE_FROM_ALL)
+
+add_subdirectory("external/glfw")
+add_subdirectory("external/glm")
+add_subdirectory("external/glad")
+add_subdirectory("external/imgui")
+
+target_link_libraries(graphics_engine2 PRIVATE glfw)
+target_link_libraries(graphics_engine2 PRIVATE glm)
+target_link_libraries(graphics_engine2 PRIVATE glad)
+
+target_link_libraries(graphics_engine2 PRIVATE imgui)
+target_include_directories(imgui PRIVATE
+"external/glfw/include"
+)
+
+target_include_directories(graphics_engine2 PRIVATE
+"external/glad/include"
+"external/glfw/include",
+"external/glm",
+"external/imgui/imgui",
+"external/imgui/imgui/backends"
+)
